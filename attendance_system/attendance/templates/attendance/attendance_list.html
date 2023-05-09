@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance List</title>
+</head>
+<body>
+    <h1>Attendance List</h1>
+    <ul>
+        {% for attendance in attendances %}
+            <li>{{ attendance.student.name }} - {{ attendance.date }} <a href="{% url 'remove_attendance' attendance.id %}">Remove</a></li>
+        {% empty %}
+            <li>No attendances found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'mark_attendance' %}"><button>Mark Attendance</button></a>
+</body>
+</html>

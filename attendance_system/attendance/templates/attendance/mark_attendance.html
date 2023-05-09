@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+</head>
+<body>
+    <h1>Mark Attendance</h1>
+    <form method="POST" action="{% url 'mark_attendance' %}">
+        {% csrf_token %}
+        <label for="student">Select Student:</label>
+        <select name="student" id="student">
+            <option value="" selected disabled>Select Student</option>
+            {% for student in students %}
+                <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+            <option value="manual">Add New Student</option>
+        </select>
+        <br><br>
+        {% if new_student_form %}
+            {{ new_student_form }}
+        {% else %}
+            <input type="text" name="new_student" placeholder="Enter New Student Name">
+        {% endif %}
+        <br><br>
+        <button type="submit">Mark Attendance</button>
+    </form>
+</body>
+</html>
